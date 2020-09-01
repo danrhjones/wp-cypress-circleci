@@ -1,0 +1,11 @@
+{
+  "name": "wp-cypress-circleci",
+  "version": "0.1.1",
+  "main": "Gruntfile.js",
+  "author": "",
+  "scripts": {},
+  "devDependencies": {
+    "cypress": "^4.5.0",
+    "@bigbite/wp-cypress": "^0.6.0"
+  }
+}
