@@ -1,0 +1,24 @@
+{
+  "name": "..",
+  "description": "..",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "..",
+      "email": "test@test.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "extra": {
+    "installer-paths": {
+      "vendor/{$vendor}/{$name}/": [
+        "type:wordpress-plugin"
+      ]
+    }
+  }
+}
