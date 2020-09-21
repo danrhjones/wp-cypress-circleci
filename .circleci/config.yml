@@ -13,9 +13,12 @@ workflows:
 jobs:
   tests:
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-1604:202007-01
     steps:
       - checkout
+      - run:
+          name: list php
+          command: php -v
       - php/install-composer
       - php/install-packages
       - node/install:
