@@ -12,9 +12,9 @@ workflows:
 
 jobs:
   tests:
-    executor: php/default
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
-      - setup_remote_docker
       - checkout
       - php/install-composer
       - php/install-packages
