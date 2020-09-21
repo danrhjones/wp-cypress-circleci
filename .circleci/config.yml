@@ -28,8 +28,13 @@ jobs:
           name: where am I?
           command: pwd
       - run:
+          name: what do I have?
+          command: ls
+      - run:
           name: composer  version
-          command: composer -v
+          command: |
+            cd wp-cypress-circleci
+            composer -v
       - php/install-composer
       - php/install-packages
       - node/install:
