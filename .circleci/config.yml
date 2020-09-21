@@ -43,6 +43,9 @@ jobs:
           paths:
             - node_modules
       - run:
+          name: whats running on port 80
+          command: netstat -tulpn | grep :80
+      - run:
           name: Start wp-cypress
           command: npx wp-cypress start
       - run:
