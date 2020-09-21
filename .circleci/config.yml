@@ -26,9 +26,6 @@ jobs:
             sudo curl -s https://getcomposer.org/installer | php
             sudo mv composer.phar /usr/local/bin/composer
       - run:
-          name: yarn version
-          command: yarn -v
-      - run:
           name: install composer packages
           command: |
             composer install
@@ -47,7 +44,7 @@ jobs:
             - node_modules
       - run:
           name: Start wp-cypress
-          command: yarn run wp-cypress start
+          command: npx wp-cypress start
       - run:
           name: Run functional tests
           command: ./node_modules/cypress/bin/cypress run
