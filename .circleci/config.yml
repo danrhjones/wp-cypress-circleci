@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  php: circleci/php@1.0.1
+#  php: circleci/php@1.0.1
   node: circleci/node@4.0.0
 
 workflows:
@@ -35,8 +35,12 @@ jobs:
           command: |
             cd wp-cypress-circleci
             composer -v
-      - php/install-composer
-      - php/install-packages
+      - run:
+          name: install composer packages
+          command: |
+            composer install
+#      - php/install-composer
+#      - php/install-packages
       - node/install:
           install-yarn: true
       - restore_cache:
