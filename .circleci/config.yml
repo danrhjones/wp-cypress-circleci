@@ -30,11 +30,7 @@ jobs:
       - run:
           name: what do I have?
           command: ls
-      - run:
-          name: composer  version
-          command: |
-            cd wp-cypress-circleci
-            composer -v
+
       - run:
           name: install composer packages
           command: |
