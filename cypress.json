@@ -1,1 +1,11 @@
-{}
+{
+  "pageLoadTimeout": 30000,
+  "wp": {
+    "version": ["5.4"],
+    "plugins": [],
+    "themes": [],
+    "config": {
+      "WP_DEBUG": false
+    }
+  }
+}
