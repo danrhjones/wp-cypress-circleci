@@ -26,11 +26,8 @@ jobs:
             sudo curl -s https://getcomposer.org/installer | php
             sudo mv composer.phar /usr/local/bin/composer
       - run:
-          name: php version
-          command: php -v
-      - run:
-          name: composer version
-          command: composer -v
+          name: yarn version
+          command: yarn -v
       - run:
           name: install composer packages
           command: |
