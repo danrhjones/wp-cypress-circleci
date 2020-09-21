@@ -31,15 +31,12 @@ jobs:
       - run:
           name: composer version
           command: composer -v
-
       - run:
           name: install composer packages
           command: |
             composer install
 #      - php/install-composer
 #      - php/install-packages
-      - node/install:
-          install-yarn: true
       - restore_cache:
           name: Restore node modules cache
           key: node_modules-{{ checksum "package.json" }}
