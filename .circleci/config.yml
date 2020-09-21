@@ -26,11 +26,11 @@ jobs:
             sudo curl -s https://getcomposer.org/installer | php
             sudo mv composer.phar /usr/local/bin/composer
       - run:
-          name: where am I?
-          command: pwd
+          name: php version
+          command: php -v
       - run:
-          name: what do I have?
-          command: ls
+          name: composer version
+          command: composer -v
 
       - run:
           name: install composer packages
