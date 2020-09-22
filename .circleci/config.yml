@@ -29,17 +29,17 @@ jobs:
           name: Install composer packages
           command: |
             composer install
-      - restore_cache:
-          name: Restore node modules cache
-          key: node_modules-{{ checksum "package.json" }}
+#      - restore_cache:
+#          name: Restore node modules cache
+#          key: node_modules-{{ checksum "package.json" }}
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - save_cache:
-          name: Save node modules cache
-          key: node_modules-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+#      - save_cache:
+#          name: Save node modules cache
+#          key: node_modules-{{ checksum "package.json" }}
+#          paths:
+#            - node_modules
       - run:
           name: Start wp-cypress
           command: npx wp-cypress start
