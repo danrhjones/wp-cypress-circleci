@@ -1,5 +1,4 @@
 {
-  "pageLoadTimeout": 30000,
   "wp": {
     "port": 3000,
     "version": ["5.4"],

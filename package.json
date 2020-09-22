@@ -5,7 +5,9 @@
   "author": "",
   "scripts": {},
   "devDependencies": {
-    "cypress": "^4.5.0",
-    "@bigbite/wp-cypress": "^0.6.0"
+    "cypress": "^4.5.0"
+  },
+  "dependencies": {
+    "@bigbite/wp-cypress": "git+https://github.com/bigbite/wp-cypress.git#feature/no-volumes"
   }
 }
