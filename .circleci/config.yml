@@ -1,8 +1,8 @@
 version: 2.1
 
-orbs:
+#orbs:
 #  php: circleci/php@1.0.1
-  node: circleci/node@4.0.0
+#  node: circleci/node@4.0.0
 
 workflows:
   lint-and-test:
@@ -34,14 +34,16 @@ jobs:
       - restore_cache:
           name: Restore node modules cache
           key: node_modules-{{ checksum "package.json" }}
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
+      - run:
+          name: Install dependencies
+          command: npm c
+
       - save_cache:
-          name: Save node modules cache
-          key: node_modules-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+            name: Save node modules cache
+            key: cache-{{ checksum "package.json" }}
+            paths:
+              - ~/.npm
+              - ~/.cache
       - run:
           name: whats running on port 80
           command: netstat -tulpn | grep :80
