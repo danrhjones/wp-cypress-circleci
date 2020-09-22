@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install PHP and composer
+          name: install stuff
           command: |
             sudo add-apt-repository ppa:ondrej/php
             sudo apt-get update
@@ -26,9 +26,11 @@ jobs:
             sudo curl -s https://getcomposer.org/installer | php
             sudo mv composer.phar /usr/local/bin/composer
       - run:
-          name: Install composer packages
+          name: install composer packages
           command: |
             composer install
+      #      - php/install-composer
+      #      - php/install-packages
       - restore_cache:
           name: Restore node modules cache
           key: node_modules-{{ checksum "package.json" }}
@@ -41,10 +43,14 @@ jobs:
           paths:
             - node_modules
       - run:
+          name: whats running on port 80
+          command: netstat -tulpn | grep :80
+      - run:
           name: Start wp-cypress
           command: npx wp-cypress start
       - run:
-          name: Run Cypress tests
+          name: Run functional tests
           command: ./node_modules/cypress/bin/cypress run
+      - run: ./node_modules/cypress/bin/cypress run
       - store_artifacts:
           path: tests/functional/cypress/screenshots
