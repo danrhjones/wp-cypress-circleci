@@ -1,5 +1,6 @@
 {
   "wp": {
+    "port": 3000,
     "version": ["5.4"],
     "plugins": [],
     "themes": [],
