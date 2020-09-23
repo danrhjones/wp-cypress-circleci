@@ -36,11 +36,12 @@ jobs:
           name: Install dependencies
           command: npm ci
       - save_cache:
-            name: Save node modules cache
+            name: Save dependancies cache
             key: cache-{{ checksum "package.json" }}
             paths:
               - ~/.npm
               - ~/.cache
+              - ~/.composer/cache
       - run:
           name: Start wp-cypress
           command: npx wp-cypress start
