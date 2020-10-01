@@ -1,1 +1,15 @@
-{}
+{
+  "wp": {
+    "port": 3000,
+    "version": ["5.4"],
+    "plugins": [],
+    "themes": [],
+    "config": {
+      "WP_DEBUG": false
+    }
+  },
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "cypress/reports/my-test-output.xml"
+  }
+}

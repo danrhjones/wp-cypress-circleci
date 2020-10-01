@@ -1,8 +1,8 @@
 version: 2.1
 
-orbs:
-  php: circleci/php@1.0.1
-  node: circleci/node@4.0.0
+#orbs:
+#  php: circleci/php@1.0.1
+#  node: circleci/node@4.0.0
 
 workflows:
   lint-and-test:
@@ -12,31 +12,43 @@ workflows:
 
 jobs:
   tests:
-    executor: php/default
+    machine:
+      image: ubuntu-1604:202007-01
     steps:
-      - setup_remote_docker
       - checkout
-      - php/install-composer
-      - php/install-packages
-      - node/install:
-          install-yarn: true
+      - run:
+          name: Install PHP and Composer
+          command: |
+            sudo add-apt-repository ppa:ondrej/php
+            sudo apt-get update
+            sudo apt-get install php7.4 php-xml php-mbstring
+            sudo apt-get install curl
+            sudo curl -s https://getcomposer.org/installer | php
+            sudo mv composer.phar /usr/local/bin/composer
+      - run:
+          name: Install composer packages
+          command: |
+            composer install
       - restore_cache:
           name: Restore node modules cache
           key: node_modules-{{ checksum "package.json" }}
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
+      - run:
+          name: Install dependencies
+          command: npm ci
       - save_cache:
-          name: Save node modules cache
-          key: node_modules-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+            name: Save dependancies cache
+            key: cache-{{ checksum "package.json" }}
+            paths:
+              - ~/.npm
+              - ~/.cache
+              - ~/.composer/cache
       - run:
           name: Start wp-cypress
-          command: yarn run wp-cypress start
+          command: npx wp-cypress start
       - run:
-          name: Run functional tests
+          name: Run Cypress tests
           command: ./node_modules/cypress/bin/cypress run
-      - run: ./node_modules/cypress/bin/cypress run
       - store_artifacts:
           path: tests/functional/cypress/screenshots
+      - store_test_results:
+          path: cypress/reports
